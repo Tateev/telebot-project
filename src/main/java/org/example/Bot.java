@@ -19,11 +19,12 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        String chatID = update.getMessage().getChatId().toString();
+        var chatID = update.getMessage().getChatId().toString();
+        var text = update.getMessage().getText();
+
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(chatID);
-        sendMessage.setText("Hello");
-
+        sendMessage.setText(text);
 
         try {
             this.execute(sendMessage);
@@ -31,5 +32,4 @@ public class Bot extends TelegramLongPollingBot {
             throw new RuntimeException(e);
         }
     }
-
 }
